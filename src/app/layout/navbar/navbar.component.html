@@ -1,0 +1,43 @@
+<!--  Navbar of the website  aslo contains the side bar and main area view -->
+
+<header class="navbar navbar-light sticky-top bg-white flex-md-nowrap p-0 m-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">
+    <i class="bi bi-cloud-fill navbar-cloud"></i>Agile CRM
+  </a>
+
+  <i class="bi bi-search ms-2 d-none d-md-block "></i>
+  <input class="form-control 	d-none d-md-block   d-flex flex-start  form-control-dark rounded-0 border-2" type="text"
+    placeholder="Search" aria-label="Search">
+
+  <div class="navbar-nav d-flex flex-row align-content-center ">
+    <div class="nav-item text-nowrap flex-fill">
+      <i style="font-size:20px" class="bi bi-plus   nav-link px-3 mt-2"></i>
+    </div>
+
+    <div class="nav-item  flex-fill">
+      <p class="nav-link px-3 mt-2"> Add </p>
+    </div>
+
+    <div class="nav-item text-nowrap flex-fill">
+      <img class="rounded-circle z-depth-2 nav-link px-3 navbar-signout-img" alt="10x10"
+        src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg" data-holder-rendered="true">
+    </div>
+
+    <button class="navbar-toggler  me-1  d-md-none collapsed " [ngClass]="{ 'show': navbarOpen }" type="button"
+      (click)="toggleNavbar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row d-flex flex-row">
+    <!-- side bar selector starts render into view -->
+    <app-sidebar [childItem]="navbarOpen"></app-sidebar>
+    <!-- side bar selector ends here -->
+
+    <!-- navigation the views on the basis of routes  -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

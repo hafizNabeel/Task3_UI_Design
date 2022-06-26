@@ -1,0 +1,24 @@
+
+<!-- Add a New user form component -->
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-4">
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3 mt-3">
+      <label for="fname" class="form-label">Firstname:</label>
+      <input type="text" class="form-control" id="fname" placeholder="Enter firstname" name="firstname"
+        formControlName="firstName">
+    </div>
+    <div class="mb-3 mt-3">
+      <label for="fname" class="form-label">Lastname:</label>
+      <input type="text" class="form-control" id="lname" placeholder="Enter Lastname" name="lname"
+        formControlName="lastName">
+    </div>
+    <div class="mb-3">
+      <label for="pwd" class="form-label">Phone Number</label>
+      <input type="tel" class="form-control" id="pwd" placeholder="Enter phone Number" name="pno"
+        formControlName="phoneNumber" minlength="6">
+    </div>
+    <button type="submit" class="btn btn-primary me-4" [disabled]="!addUserForm.valid">Submit</button>
+    <button type="submit" class="btn btn-primary me-4" (click)="gotoContact()">Back</button>
+  </form>
+</main>

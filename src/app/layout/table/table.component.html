@@ -1,0 +1,201 @@
+<!-- table component renders the main area view  -->
+
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-4">
+  <div class="row">
+    <div class="col">
+      <div ngbDropdown container="body">
+        <p class="h2 txtcolor">
+          Contacts
+          <i
+            class="bi bi-arrow-down-short no-dropdown-toggle-icon"
+            ngbDropdownToggle
+          ></i>
+        </p>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem class="text-primary">Contact</button>
+          <div class="dropdown-divider"></div>
+          <button ngbDropdownItem>Add</button>
+          <div class="dropdown-divider"></div>
+          <button ngbDropdownItem class="text-muted">Custom filters</button>
+          <button ngbDropdownItem>My Contacts</button>
+          <button ngbDropdownItem>Price</button>
+          <button ngbDropdownItem>Salary</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col pt-2 d-flex">
+      <div ngbDropdown container="body">
+        <p>
+          Sort by:
+          <i
+            class="bi bi-arrow-down-short no-dropdown-toggle-icon"
+            ngbDropdownToggle
+          ></i>
+        </p>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem (click)="sortby('asc')">Asce</button>
+          <button ngbDropdownItem (click)="sortby('dsc')">Desc</button>
+        </div>
+      </div>
+      <div ngbDropdown container="body">
+        <p class="ms-2">
+          Date Created
+          <i
+            class="bi bi-arrow-down-short no-dropdown-toggle-icon"
+            ngbDropdownToggle
+          ></i>
+        </p>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem class="text-primary">Date created</button>
+          <button ngbDropdownItem>Score</button>
+          <button ngbDropdownItem>Star Value</button>
+          <button ngbDropdownItem>first Name</button>
+          <button ngbDropdownItem>Last Name</button>
+          <button ngbDropdownItem class="text-muted">Custom fields</button>
+          <button ngbDropdownItem>Tags</button>
+          <button ngbDropdownItem>price</button>
+          <button ngbDropdownItem>Salary</button>
+          <button ngbDropdownItem>Facebook</button>
+        </div>
+      </div>
+    </div>
+    <div class="col d-flex">
+      <div ngbDropdown container="body">
+        <button
+          type="button" class="btn btn-light btn-outline btn-lg  me-2 no-dropdown-toggle-icon" ngbDropdownToggle>
+          <i class="bi bi-list-task"></i>
+        </button>
+        <div ngbDropdownMenu>
+          <button ngbDropdownItem (click)="smallListShow()">
+            <i class="bi bi-list-ul"></i> Small list View
+          </button>
+
+          <button ngbDropdownItem (click)="listShow()">
+            <i class="bi bi-grid-3x2-gap-fill"></i> List view
+          </button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-light btn-outline me-2">
+        Filter <i class="bi bi-filter"></i>
+      </button>
+      <button class="btn btn-primary me-2" type="button" (click)="addNewUser()">
+        <i style="margin-right: 10px" class="bi bi-person-plus"></i> Add Contact
+      </button>
+      <button type="button" class="btn btn-light me-2">
+        <i class="bi bi-three-dots"></i>
+      </button>
+    </div>
+  </div>
+
+  <ng-container *ngIf="showContact">
+    <div class="table-responsive">
+      <table class="table tdesign">
+        <thead>
+          <tr>
+            <th><i class="bi bi-plus-square"></i></th>
+            <th scope="col">Basic Info</th>
+
+            <th scope="col">Company</th>
+            <th scope="col">Lead Score</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Tags</th>
+            <th scope="col">Created Data</th>
+            <th scope="col">
+              <i class="bi bi-arrow-left-square me-2"></i
+              ><i class="bi bi-arrow-right-square"></i>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody class="bodySection">
+          <tr *ngFor="let item of persons" class="trdesign">
+            <td class="pt-4 border-bottom-0">
+              <input class="mt-1" type="checkbox" />
+            </td>
+            <td class="d-flex border-bottom-0 clearfix mb-2">
+              <span>
+                <img
+                  style="width:50px; height:50px"
+                  class="rounded-circle"
+                  src="../../../assets/images/avatar-png.jpg"
+                  alt="profile"
+                />
+              </span>
+              <div class="d-flex flex-column ms-2">
+                {{ item.firstName }} {{ item.lastName }}
+                <br />
+                {{ item.email }}
+              </div>
+            </td>
+
+            <td class="pt-4 border-bottom-0">
+              {{ item.company }}
+            </td>
+            <td class="pt-4 border-bottom-0">{{ item.score }}</td>
+            <td class="pt-4 border-bottom-0">{{ item.phoneNumber }}</td>
+            <td class="pt-4 border-bottom-0">
+              <span class="badge text-bg-light">{{ item.tags }}</span>
+            </td>
+            <td class="pt-4 border-bottom-0">{{ item.dateCreated }}</td>
+
+            <div ngbDropdown container="body">
+              <td class="overflow-hidden" class="pt-1">
+                <i
+                  class="bi bi-three-dots no-dropdown-toggle-icon"
+                  ngbDropdownToggle
+                ></i>
+                <div ngbDropdownMenu>
+                  <button ngbDropdownItem>Edit</button>
+                  <button ngbDropdownItem>Duplicate</button>
+                  <button ngbDropdownItem>Move</button>
+                  <div class="dropdown-divider"></div>
+                  <button ngbDropdownItem (click)="removePerson(item)">
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </div>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="!showContact">
+    <table class="table table-bordered bg-white table-sm mt-4">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Company</th>
+        </tr>
+      </thead>
+      <tbody class="bodySection">
+        <tr *ngFor="let item of persons">
+          <td>{{ item.firstName }}</td>
+          <td>{{ item.lastName }}</td>
+          <td>{{ item.company }}</td>
+          <div ngbDropdown container="body">
+            <td class="overflow-hidden">
+              <i
+                class="bi bi-three-dots no-dropdown-toggle-icon"
+                ngbDropdownToggle
+              ></i>
+              <div ngbDropdownMenu>
+                <button ngbDropdownItem>Edit</button>
+                <button ngbDropdownItem>Duplicate</button>
+                <button ngbDropdownItem>Move</button>
+                <div class="dropdown-divider"></div>
+                <button ngbDropdownItem (click)="removePerson(item)">
+                  Delete
+                </button>
+              </div>
+            </td>
+          </div>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+</main>
