@@ -1,4 +1,4 @@
-# Task 3 Ux desing
+# Task 3 Ux design
 
 # website live link
 https://agilecrm-8626e.web.app/dashboard
