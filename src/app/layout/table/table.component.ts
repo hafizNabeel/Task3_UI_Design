@@ -30,9 +30,13 @@ export class TableComponent implements OnInit {
   }
 
   removePerson(item: any) {
-    this.persons = this.persons?.filter(
+    /*this.persons = this.persons?.filter(
       (userdata) => userdata.firstName !== item.firstName
-    );
+    );*/
+     let filteredata:any;
+     filteredata = this.persons?.indexOf(item);
+    // console.log(this.filteredata);
+    this.persons?.splice(filteredata,1);
   }
 
   sortby(property: string) {
