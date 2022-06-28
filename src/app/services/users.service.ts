@@ -18,6 +18,6 @@ export class UsersService {
   }
 
   getUsers() {
-    return this.userData.slice();
+    return this.userData;
   }
 }
